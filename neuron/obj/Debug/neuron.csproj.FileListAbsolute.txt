@@ -1,0 +1,10 @@
+C:\Users\Sowa\source\repos\neuron\neuron\obj\Debug\neuron.csprojAssemblyReference.cache
+C:\Users\Sowa\source\repos\neuron\neuron\obj\Debug\neuron.Form1.resources
+C:\Users\Sowa\source\repos\neuron\neuron\obj\Debug\neuron.Properties.Resources.resources
+C:\Users\Sowa\source\repos\neuron\neuron\obj\Debug\neuron.csproj.GenerateResource.cache
+C:\Users\Sowa\source\repos\neuron\neuron\obj\Debug\neuron.csproj.CoreCompileInputs.cache
+C:\Users\Sowa\source\repos\neuron\neuron\bin\Debug\neuron.exe.config
+C:\Users\Sowa\source\repos\neuron\neuron\bin\Debug\neuron.exe
+C:\Users\Sowa\source\repos\neuron\neuron\bin\Debug\neuron.pdb
+C:\Users\Sowa\source\repos\neuron\neuron\obj\Debug\neuron.exe
+C:\Users\Sowa\source\repos\neuron\neuron\obj\Debug\neuron.pdb
