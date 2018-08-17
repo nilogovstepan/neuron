@@ -16,102 +16,102 @@ namespace neuron
 
         //variables and arrays
         int CountX = 1;
-        int CountWX = 1;
-        int CountZ = 1;
-        int CountWZ = 1;
-        int CountY = 1;
-        public double x = 0;
-        public double wx = 0;
-        public double zin = 0;
-        public double zout = 0;
-        public double wz = 0;
-        public double yin = 0;
-        public double yout = 0;
-        public double sk = 0;
-        public double szin = 0;
-        public double szout = 0;
-        public double dwx = 0;
-        public double dwz = 0;
 
-        public NeuronMachine()
-        {
-            //Initialization
-            Random r = new Random(DateTimeOffset.Now.Millisecond);
-            for (int i = 0; i < CountWX; i++) { wx = r.Next(0, 10000) / 10000.0f; wz = r.Next(0, 10000) / 10000.0f; }
-            int f = 0;
-        }
+        //int CountWX = 1;
+        //int CountZ = 1;
+        //int CountWZ = 1;
+        //int CountY = 1;
+        //public double x = 0;
+        //public double wx = 0;
+        //public double zin = 0;
+        //public double zout = 0;
+        //public double wz = 0;
+        //public double yin = 0;
+        //public double yout = 0;
+        //public double sk = 0;
+        //public double szin = 0;
+        //public double szout = 0;
+        //public double dwx = 0;
+        //public double dwz = 0;
 
-        public double Work(double X)
-        {
-            //solve 
-            x = X;
-            for (int i = 0; i < CountZ; i++) { zin = x * wx; zout = F(zin); }
-            for (int i = 0; i < CountY; i++) { yin = zout * wz; yout = F(yin); }
-            return yout;
-        }
+        //public NeuronMachine()
+        //{
+        //    //Initialization
+        //    Random r = new Random(DateTimeOffset.Now.Millisecond);
+        //    for (int i = 0; i < CountWX; i++) { wx = r.Next(0, 10000) / 10000.0f; wz = r.Next(0, 10000) / 10000.0f; }
+        //    int f = 0;
+        //}
 
-        public void Teach(double t)
-        {
-            //MORerror
-            //from hidden layer
-            sk = (t - yout) * Fd(yin);
-            dwz = a * sk * zout;
-            //from input layer
-            szin = sk * wz;
-            szout = szin * Fd(szin);
-            dwx = a * szout * x;
+        //public double Work(double X)
+        //{
+        //    //solve 
+        //    x = X;
+        //    for (int i = 0; i < CountZ; i++) { zin = x * wx; zout = F(zin); }
+        //    for (int i = 0; i < CountY; i++) { yin = zout * wz; yout = F(yin); }
+        //    return yout;
+        //}
 
-            //change weight
-            wz += dwz;
-            wx += dwx;
+        //public void Teach(double t)
+        //{
+        //    //MORerror
+        //    //from hidden layer
+        //    sk = (t - yout) * Fd(yin);
+        //    dwz = a * sk * zout;
+        //    //from input layer
+        //    szin = sk * wz;
+        //    szout = szin * Fd(szin);
+        //    dwx = a * szout * x;
 
-            //show
+        //    //change weight
+        //    wz += dwz;
+        //    wx += dwx;
 
-        }
+        //    //show
 
-        double F(double x)
-        {
-            //double xx = 1.0 / (1.0 + Math.Exp(-x));
-            return 1.0 / (1.0 + Math.Exp(-x));
-        }
+        //}
 
-        double Fd(double x)
-        {
-            double a = F(x);
-            return a * (1 - a);
-        }
+        //double F(double x)
+        //{
+        //    //double xx = 1.0 / (1.0 + Math.Exp(-x));
+        //    return 1.0 / (1.0 + Math.Exp(-x));
+        //}
 
-        class Link
-        {
-            int a = 0, b = 0;
-            double aout = 0;
-            double bin = 0;
-            double w = 0;
+        //double Fd(double x)
+        //{
+        //    double a = F(x);
+        //    return a * (1 - a);
+        //}
 
-            public Link(int A, int B)
-            {
-                a = A;
-                b = B;
-                Random r = new Random(DateTimeOffset.Now.Millisecond);
-                w = (double)(r.Next(10000)) / 10000.0;
+        //class Link
+        //{
+        //    int a = 0, b = 0;
+        //    double aout = 0;
+        //    double bin = 0;
+        //    double w = 0;
 
-            }
+        //    public Link(int A, int B)
+        //    {
+        //        a = A;
+        //        b = B;
+        //        Random r = new Random(DateTimeOffset.Now.Millisecond);
+        //        w = (double)(r.Next(10000)) / 10000.0;
 
-            public Link(int A, int B, double W)
-            {
-                a = A;
-                b = B;
-                w = W;
+        //    }
 
-            }
+        //    public Link(int A, int B, double W)
+        //    {
+        //        a = A;
+        //        b = B;
+        //        w = W;
+
+        //    }
 
 
 
-        }
+        //}
 
         //******************************************************************************************************
-        //Dictionary for weight
-
+        
         static public Dictionary<int[], double> weights = new Dictionary<int[], double>();
         static public int Count = 0; //count of layers
         public List<Layer> layers = new List<Layer>();
@@ -119,7 +119,11 @@ namespace neuron
         List<double> Y = new List<double>(); //output Y
         List<double> T = new List<double>();
 
-        //1.1 Create neuron machine with X inputs and set A 
+        /// <summary>
+        /// 1.1 Create neuron machine with X inputs and set A 
+        /// </summary>
+        /// <param name="CountX"></param>
+        /// <param name="A"></param>
         public NeuronMachine(int CountX, int A)
         {
             this.CountX = CountX;
@@ -139,7 +143,6 @@ namespace neuron
             {
                 l = new Layer(CountOfNeuron, layers[Count].CountOfNeuron());
             }
-            //Count++;
             layers.Add(l); //add created layer to list of layers
         }
 
@@ -173,328 +176,7 @@ namespace neuron
                 layers[i].ChangeWeights();//Teach hidden layer
             }
         }
-
-        //public void CreateLayer()
-        //{
-        //    Layer l = new Layer(Count++);
-        //    layers.Add(l);
-        //}
-
-        //public void CreateLayer(int CountOfNeuron)
-        //{
-        //    Layer l = new Layer(Count++);
-        //    l.CreateNeurons(CountOfNeuron);
-        //    layers.Add(l);
-        //}
-
-
-
-
-
-        //*****************************************LAYER*******************************************
-
-        public class Layer
-        {
-            int CountX = 0;
-            //int Count = 0; //count of neurons in layer
-
-            int index;
-            List<Neuron> neurons;
-            public List<double> Z;
-            public List<double> _sigma;
-            List<double> sigmaIn;
-
-            //1.3 Create layer in neuron machine with N neurons and X enters in every neuron in layer
-            public Layer(int CountOfNeuron, int CountX)
-            {
-                neurons = new List<Neuron>();
-                //index = Index;
-                CreateNeurons(CountOfNeuron, CountX);
-
-
-            }
-
-            //1.4 Create N neurons with X entry in every neuron
-            public void CreateNeurons(int CountOfNeurons, int CountX)
-            {
-                for (int i = 0; i < CountOfNeurons; i++)
-                {
-                    Neuron n = new Neuron(CountX);
-                    neurons.Add(n);
-                    //Random r = new Random();
-                    //double w = r.Next(0, 10000) / 10000.0f;
-
-                    //int[] m = { index, ++Count, j};
-                    //weights.Add(m,w);
-                }
-            }
-
-            //2.2 Layer work with entry data
-            public void Work(List<double> X)
-            {
-                SendXAll(X);
-            }
-
-            //2.3 Data sends for all neurons in layer
-            void SendXAll(List<double> X)
-            {
-
-                Z = new List<double>();
-                foreach (Neuron n in neurons)
-                {
-                    Z.Add(n.Work(X));
-                }
-
-            }
-
-
-            //3.1.1 Teach OUTPUT layer
-            public void TeachY(List<double> T, double A)
-            {
-                _sigma = new List<double>();
-                int i = 0;
-                foreach (Neuron n in neurons)
-                {
-                    _sigma.Add(n.SigmaY(T[i++], A));
-                }
-
-
-            }
-            /// <summary>
-            ///3.1.2 Teach HIDDEN layer 
-            /// </summary>
-            /// <param name="SigmaK"></param>
-            /// <param name="A"></param>
-
-            public void Teach(List<double> SigmaK, double A)
-            {
-                int i = 0;
-                foreach (Neuron n in neurons)
-                {
-                    sigmaIn.Add(n.SigmaIn(SigmaK[i++], A));
-                }
-            }
-
-            /// <summary>
-            /// 3.1.3 Change weights in all neurons in layer
-            /// </summary>
-            /// <returns></returns>
-            public void ChangeWeights()
-            {
-                foreach (Neuron n in neurons)
-                {
-                    n.ChangeWeights();
-                }
-            }
-
-
-            public int CountOfNeuron()
-            {
-                return neurons.Count();
-            }
-
-
-
-            public Layer(int Index)
-            {
-                neurons = new List<Neuron>();
-                //index = Index;
-            }
-
-
-
-            public void CreateNeuron(int Index)
-            {
-
-                Neuron n = new Neuron(++Count);
-                neurons.Add(n);
-            }
-
-            public void CreateNeuron(int Index, int CountX)
-            {
-                Neuron n = new Neuron(CountX);
-                neurons.Add(n);
-                //Random r = new Random();
-                //double w = r.Next(0, 10000) / 10000.0f;
-                //index = Index;
-                //int[] m = { index, ++Count, j};
-                //weights.Add(m,w);
-            }
-
-            //public void CreateNeurons(int CountOfNeurons)
-            //{
-            //    for (int i = 0; i < CountOfNeurons; i++)
-            //    {
-            //        Neuron n = new Neuron(neurons.Count);
-            //        neurons.Add(n);
-            //    }
-            //}
-
-
-
-        }
-        //****************************************LAYER END****************************************
-
-
-        //******************************************NEURON*****************************************
-
-        class Neuron
-        {
-            int index = 0; //индекс нейрона в слое?
-                           //Dictionary<int, double> weightsFrom;//индескы и веса от соответствующих нейронов
-                           //Dictionary<int, double> weightsTo;//индексы и веса к соответствующим нейронам
-                           //Dictionary<int, double> Z;//взвешенный сигнал от соотвествующего нейрона
-                           //Dictionary<int, double> ZTo;
-            double Zin = 0;
-            double Zout = 0;
-
-            List<double> w; //all weigths to neuron
-            List<double> dw; //delta for every weight
-            List<double> z; //all weigthing signal to neuron
-            List<double> s; //all signal to neuron
-            double _sigma; //sigma для обучения
-            double _sigmaOut = 0;
-            double bias = 0;
-            double dbias = 0;
-
-            //public Neuron(int Index)
-            //{
-            //    index = Index;
-            //    weightsFrom = new Dictionary<int, double>();
-            //    weightsTo = new Dictionary<int, double>();
-            //    Z = new Dictionary<int, double>();
-            //}
-
-
-            //1.5 Create Neuron with X enters and create random weight for all enters
-            public Neuron(int CountX)
-            {
-                Random r = new Random(DateTimeOffset.Now.Millisecond);
-                w = new List<double>();
-                for (int i = 0; i < CountX; i++)
-                {
-                    w.Add((r.Next(0, 10000) / 10000.0f));
-                }
-                bias = r.Next(0, 10000) / 10000.0f;
-            }
-
-            //2.4 Neuron get data and solve
-            public double Work(List<double> X)
-            {
-                z = new List<double>();
-                s = X;
-                for (int i = 0; i < s.Count; i++)
-                {
-                    z.Add(s[i] * w[i]);
-                }
-                ZIN();
-                ZOUT();
-                return Zout;
-            }
-
-            //3.1.1.1
-            public double SigmaY(double t, double a)
-            {
-                _sigma = (t - Zout) * Fd(Zin);
-                int i = 0;
-                dw = new List<double>();
-                foreach (double _w in w)
-                {
-                    dw.Add(a * _sigma * s[i++]);
-                }
-                dbias = a * t;
-                return _sigma;
-
-            }
-
-            public void ChangeWeights()
-            {
-                int i = 0;
-                foreach (double _w in w)
-                {
-                    w[i] += dw[i++];
-                }
-                bias += dbias;
-            }
-
-            public double SigmaIn(double sigmaK, double a)
-            {
-                foreach (double _w in w)
-                {
-                    _sigma = sigmaK * _w;
-                }
-                _sigmaOut = _sigma * Fd(Zin);
-                int i = 0;
-                foreach (double _w in w)
-                {
-                    dw.Add(a * _sigma * s[i++]);
-                }
-                dbias = a * _sigmaOut;
-                return _sigmaOut;
-                //int i = 0;
-                //foreach (double _w in w)
-                //{
-                //    dw.Add(a * _sigma * s[i++]);
-                //}
-                //dbias = a * sigmaIN;
-                //return _sigma;
-
-            }
-
-            public void ZIN()
-            {
-                foreach (double zj in z)
-                {
-                    Zin += zj;
-                }
-                Zin += bias;
-                //return Zin;
-            }
-
-            public void AddLinkFrom(int index, double weigth)
-            {
-                //weightsFrom.Add(index, weigth);
-            }
-
-            public void AddLinkTo(int index, double weigth)
-            {
-                //weightsTo.Add(index, weigth);
-            }
-
-            public void FindZTo(int index)
-            {
-                //ZTo.Add(index, weightsTo[index] * Zout);
-            }
-
-            public double SolveZ(int index, double weight, double x)
-            {
-                double z = weight * x;
-                //Z.Add(index,z);
-                return z;
-            }
-
-            public void ZOUT()
-            {
-                Zout = F(Zin);
-            }
-
-            public double F(double x)
-            {
-                return 1.0 / (1.0 + Math.Exp(-x));
-            }
-
-            public double Fd(double x)
-            {
-                double a = F(x);
-                return a * (1 - a);
-            }
-
-
-
-        }
-
-        //**************************************************NEURON END********************************************
-
+                
     }
 
     //*************************************NEURON MACHINE END********************************************************

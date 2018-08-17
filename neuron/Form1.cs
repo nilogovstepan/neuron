@@ -13,7 +13,7 @@ namespace neuron
     public partial class Form1 : Form
     {
 
-        NeuronMachine a = new NeuronMachine();
+        NeuronMachine a;// = new NeuronMachine();
 
         public Form1()
         {
@@ -22,34 +22,38 @@ namespace neuron
 
         private void button1_Click(object sender, EventArgs e)
         {
-            textBox3.Text = Convert.ToString(a.Work(Convert.ToDouble(textBox1.Text)));
-            listBox1.Items.Add("WORK*****************************");
-            listBox1.Items.Add("x=" + a.x);
-            listBox1.Items.Add("wx=" + a.wx);
-            listBox1.Items.Add("zin=" + a.zin);
-            listBox1.Items.Add("zout=" + a.zout);
-            listBox1.Items.Add("wz=" + a.wz);
-            listBox1.Items.Add("yin=" + a.yin);
-            listBox1.Items.Add("yout=" + a.yout);
+            //textBox3.Text = Convert.ToString(a.Work(Convert.ToDouble(textBox1.Text)));
+            //listBox1.Items.Add("WORK*****************************");
+            //listBox1.Items.Add("x=" + a.x);
+            //listBox1.Items.Add("wx=" + a.wx);
+            //listBox1.Items.Add("zin=" + a.zin);
+            //listBox1.Items.Add("zout=" + a.zout);
+            //listBox1.Items.Add("wz=" + a.wz);
+            //listBox1.Items.Add("yin=" + a.yin);
+            //listBox1.Items.Add("yout=" + a.yout);
 
         }
 
         private void button2_Click(object sender, EventArgs e)
         {
-            listBox1.Items.Add("TEACH*****************************");
-            a.Teach(Convert.ToDouble(textBox2.Text));
-            listBox1.Items.Add("sk=" + a.sk);
-            listBox1.Items.Add("dwz=" + a.dwz);
-            listBox1.Items.Add("szin=" + a.szin);
-            listBox1.Items.Add("szout=" + a.szout);
-            listBox1.Items.Add("dwx=" + a.dwx);
-            listBox1.Items.Add("wx=" + a.wx);
-            listBox1.Items.Add("wz=" + a.wz);
+            //listBox1.Items.Add("TEACH*****************************");
+            //a.Teach(Convert.ToDouble(textBox2.Text));
+            //listBox1.Items.Add("sk=" + a.sk);
+            //listBox1.Items.Add("dwz=" + a.dwz);
+            //listBox1.Items.Add("szin=" + a.szin);
+            //listBox1.Items.Add("szout=" + a.szout);
+            //listBox1.Items.Add("dwx=" + a.dwx);
+            //listBox1.Items.Add("wx=" + a.wx);
+            //listBox1.Items.Add("wz=" + a.wz);
         }
 
         NeuronMachine n;
         List<double> X;
-        //1.Click for Create neuron machine
+        /// <summary>
+        ///1.Click for Create neuron machine 
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void button3_Click(object sender, EventArgs e)
         {
             n = new NeuronMachine(2, 5);
@@ -60,7 +64,11 @@ namespace neuron
             }
         }
 
-        //2. Create List X and do Work neuron machine
+        /// <summary>
+        /// 2. Create List X and do Work neuron machine
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void button4_Click(object sender, EventArgs e)
         {
             X = new List<double>();
@@ -74,7 +82,11 @@ namespace neuron
             textBox3.Text = Convert.ToString(Y[0]);
         }
 
-        //3. Teach neuron machine
+        /// <summary>
+        /// 3. Teach neuron machine
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void button5_Click(object sender, EventArgs e)
         {
             int jj = 0;

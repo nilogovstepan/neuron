@@ -34,9 +34,9 @@
             this.button1 = new System.Windows.Forms.Button();
             this.listBox1 = new System.Windows.Forms.ListBox();
             this.button2 = new System.Windows.Forms.Button();
-            this.button3 = new System.Windows.Forms.Button();
-            this.button4 = new System.Windows.Forms.Button();
-            this.button5 = new System.Windows.Forms.Button();
+            this.create = new System.Windows.Forms.Button();
+            this.work = new System.Windows.Forms.Button();
+            this.teach = new System.Windows.Forms.Button();
             this.textBox4 = new System.Windows.Forms.TextBox();
             this.SuspendLayout();
             // 
@@ -89,35 +89,35 @@
             this.button2.UseVisualStyleBackColor = true;
             this.button2.Click += new System.EventHandler(this.button2_Click);
             // 
-            // button3
+            // create
             // 
-            this.button3.Location = new System.Drawing.Point(118, 38);
-            this.button3.Name = "button3";
-            this.button3.Size = new System.Drawing.Size(52, 23);
-            this.button3.TabIndex = 6;
-            this.button3.Text = "Create";
-            this.button3.UseVisualStyleBackColor = true;
-            this.button3.Click += new System.EventHandler(this.button3_Click);
+            this.create.Location = new System.Drawing.Point(118, 38);
+            this.create.Name = "create";
+            this.create.Size = new System.Drawing.Size(52, 23);
+            this.create.TabIndex = 6;
+            this.create.Text = "Create";
+            this.create.UseVisualStyleBackColor = true;
+            this.create.Click += new System.EventHandler(this.button3_Click);
             // 
-            // button4
+            // work
             // 
-            this.button4.Location = new System.Drawing.Point(176, 38);
-            this.button4.Name = "button4";
-            this.button4.Size = new System.Drawing.Size(45, 23);
-            this.button4.TabIndex = 7;
-            this.button4.Text = "Work";
-            this.button4.UseVisualStyleBackColor = true;
-            this.button4.Click += new System.EventHandler(this.button4_Click);
+            this.work.Location = new System.Drawing.Point(176, 38);
+            this.work.Name = "work";
+            this.work.Size = new System.Drawing.Size(45, 23);
+            this.work.TabIndex = 7;
+            this.work.Text = "Work";
+            this.work.UseVisualStyleBackColor = true;
+            this.work.Click += new System.EventHandler(this.button4_Click);
             // 
-            // button5
+            // teach
             // 
-            this.button5.Location = new System.Drawing.Point(227, 38);
-            this.button5.Name = "button5";
-            this.button5.Size = new System.Drawing.Size(49, 23);
-            this.button5.TabIndex = 8;
-            this.button5.Text = "Teach";
-            this.button5.UseVisualStyleBackColor = true;
-            this.button5.Click += new System.EventHandler(this.button5_Click);
+            this.teach.Location = new System.Drawing.Point(227, 38);
+            this.teach.Name = "teach";
+            this.teach.Size = new System.Drawing.Size(49, 23);
+            this.teach.TabIndex = 8;
+            this.teach.Text = "Teach";
+            this.teach.UseVisualStyleBackColor = true;
+            this.teach.Click += new System.EventHandler(this.button5_Click);
             // 
             // textBox4
             // 
@@ -136,9 +136,9 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(409, 457);
             this.Controls.Add(this.textBox4);
-            this.Controls.Add(this.button5);
-            this.Controls.Add(this.button4);
-            this.Controls.Add(this.button3);
+            this.Controls.Add(this.teach);
+            this.Controls.Add(this.work);
+            this.Controls.Add(this.create);
             this.Controls.Add(this.button2);
             this.Controls.Add(this.listBox1);
             this.Controls.Add(this.button1);
@@ -160,9 +160,9 @@
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.ListBox listBox1;
         private System.Windows.Forms.Button button2;
-        private System.Windows.Forms.Button button3;
-        private System.Windows.Forms.Button button4;
-        private System.Windows.Forms.Button button5;
+        private System.Windows.Forms.Button create;
+        private System.Windows.Forms.Button work;
+        private System.Windows.Forms.Button teach;
         private System.Windows.Forms.TextBox textBox4;
     }
 }
