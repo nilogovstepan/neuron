@@ -18,43 +18,63 @@ namespace neuron
         public List<double> _sigma;
         List<double> sigmaIn;
 
-        //1.3 Create layer in neuron machine with N neurons and X enters in every neuron in layer
+        /// <summary>
+        /// 1.2.1 Create layer in neuron machine with N neurons and X enters in every neuron in layer
+        /// </summary>
+        /// <param name="CountOfNeuron">Количество нейронов в слое</param>
+        /// <param name="CountX">Количество входящих связей (нейронов предыдущего слоя)</param>
         public Layer(int CountOfNeuron, int CountX)
         {
             neurons = new List<Neuron>();
             CreateNeurons(CountOfNeuron, CountX);
-            
         }
 
-        //1.4 Create N neurons with X entry in every neuron
+        /// <summary>
+        /// 1.2.2 Create N neurons with X entry in every neuron
+        /// </summary>
+        /// <param name="CountOfNeurons">Количество нейронов в слое</param>
+        /// <param name="CountX">Количество входящих связей (нейронов предыдущего слоя)</param>
         public void CreateNeurons(int CountOfNeurons, int CountX)
         {
             for (int i = 0; i < CountOfNeurons; i++)
             {
+                Console.WriteLine("Нейрон " + i);
                 Neuron n = new Neuron(CountX);
                 neurons.Add(n);
             }
         }
 
-        //2.2 Layer work with entry data
+        /// <summary>
+        /// 2.1.1 Layer work with entry data
+        /// </summary>
+        /// <param name="X">Входные данные в слой</param>
         public void Work(List<double> X)
         {
             SendXAll(X);
         }
 
-        //2.3 Data sends for all neurons in layer
+        /// <summary>
+        /// 2.1.2 Data sends for all neurons in layer
+        /// </summary>
+        /// <param name="X">Входные данные в слой</param>
         void SendXAll(List<double> X)
         {
 
             Z = new List<double>();
+            int i = 0;
             foreach (Neuron n in neurons)
             {
+                Console.WriteLine("Нейрон "+ i++);
                 Z.Add(n.Work(X));
             }
 
         }
-        
-        //3.1.1 Teach OUTPUT layer
+
+        /// <summary>
+        /// 3.1.1 Teach OUTPUT layer
+        /// </summary>
+        /// <param name="T">Массив данных для обучения</param>
+        /// <param name="A">Скорость обучения нейросети</param>
         public void TeachY(List<double> T, double A)
         {
             _sigma = new List<double>();
@@ -70,8 +90,8 @@ namespace neuron
         /// <summary>
         ///3.1.2 Teach HIDDEN layer 
         /// </summary>
-        /// <param name="SigmaK"></param>
-        /// <param name="A"></param>
+        /// <param name="SigmaK">Массив ошибок с предыдущего слоя</param>
+        /// <param name="A">Скорость обучения нейросети</param>
         public void Teach(List<double> SigmaK, double A)
         {
             int i = 0;
@@ -93,6 +113,10 @@ namespace neuron
             }
         }
         
+        /// <summary>
+        /// Возвращает количество нейронов в слое
+        /// </summary>
+        /// <returns></returns>
         public int CountOfNeuron()
         {
             return neurons.Count();

@@ -6,16 +6,17 @@ using System.Threading.Tasks;
 
 namespace neuron
 {
+
     class NeuronMachine
     {
         //hyperparameters
         /// <summary>
         ///Скорость обучения Нейросистемы
         /// </summary>
-        double a = 5;
+        private double a;
 
         //variables and arrays
-        int CountX = 1;
+        int CountX; // Количество входов в нейросеть
 
         //int CountWX = 1;
         //int CountZ = 1;
@@ -111,27 +112,39 @@ namespace neuron
         //}
 
         //******************************************************************************************************
+
+        //static public Dictionary<int[], double> weights = new Dictionary<int[], double>();
+
         
-        static public Dictionary<int[], double> weights = new Dictionary<int[], double>();
         static public int Count = 0; //count of layers
-        public List<Layer> layers = new List<Layer>();
+        public List<Layer> layers = new List<Layer>(); //list of layers
         List<double> X = new List<double>(); //input X
         List<double> Y = new List<double>(); //output Y
-        List<double> T = new List<double>();
+        List<double> T = new List<double>(); //teach list
 
         /// <summary>
-        /// 1.1 Create neuron machine with X inputs and set A 
+        /// 1.1 Создаёт нейросеть с X входами, скоростью обучения A и слоями с количеством нейронов указанных в массиве ninl.
         /// </summary>
-        /// <param name="CountX"></param>
-        /// <param name="A"></param>
-        public NeuronMachine(int CountX, int A)
+        /// <param name="CountX">Количество входов в нейросеть</param>
+        /// <param name="A">Скорость обучения нейросети</param>
+        /// <param name="ninl">Массив в котором каждый элемент указывает сколько нейронов будет в слое.
+        /// От количества элементов массива зависит количество слоёв в нейросети.</param>
+        public NeuronMachine(int CountX, int A, int[] ninl)
         {
             this.CountX = CountX;
             X = new List<double>(CountX); //create list for input
             a = A;//set A for neuron machine
+            for (int i = 0; i < ninl.Length; i++)
+            {
+                Console.WriteLine("Слой " + i);
+                CreateLayer(ninl[i]);
+            }    
         }
 
-        //1.2 Create Layer for neuron machine with N neurons
+        /// <summary>
+        /// 1.2 Create Layer for neuron machine with N neurons
+        /// </summary>
+        /// <param name="CountOfNeuron">Количество нейронов в сети</param>
         public void CreateLayer(int CountOfNeuron)
         {
             Layer l;
@@ -143,26 +156,35 @@ namespace neuron
             {
                 l = new Layer(CountOfNeuron, layers[Count].CountOfNeuron());
             }
-            layers.Add(l); //add created layer to list of layers
+            layers.Add(l);
         }
 
-        //2.1 Begin work neuron machine(send data to layer)
+        /// <summary>
+        /// 2.1 Begin work neuron machine(send data to layer)
+        /// </summary>
+        /// <param name="Data">Входные данные</param>
+        /// <returns>Возвращает решение нейросети в виде массива весов на выходящие точки Y нейросети</returns>
         public List<double> Work(List<double> Data)
         {
-            X = Data;//for anything
+            X = Data;//для обработки входных данных уже в массиве X
             if (layers.Count >= 2)
             {
+                Console.WriteLine("Слой "+0);
                 layers[0].Work(X);//send x to first layer
                 for (int i = 1; i < layers.Count; i++)
                 {
-                    layers[i].Work(layers[0].Z);
+                    Console.WriteLine("Слой "+ i);
+                    layers[i].Work(layers[i-1].Z);
                 }
                 Y = layers[layers.Count - 1].Z;
             }
             return Y;
         }
 
-        //3.1 Teach all layer of neuron machine
+        /// <summary>
+        /// 3.1 Teach all layer of neuron machine
+        /// </summary>
+        /// <param name="T">Массив обучающих данных</param>
         public void Teach(List<double> T)
         {
             this.T = T;

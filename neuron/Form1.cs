@@ -13,7 +13,7 @@ namespace neuron
     public partial class Form1 : Form
     {
 
-        NeuronMachine a;// = new NeuronMachine();
+        //NeuronMachine a;// = new NeuronMachine();
 
         public Form1()
         {
@@ -56,12 +56,10 @@ namespace neuron
         /// <param name="e"></param>
         private void button3_Click(object sender, EventArgs e)
         {
-            n = new NeuronMachine(2, 5);
-            if (n != null)
-            {
-                n.CreateLayer(2);
-                n.CreateLayer(1);
-            }
+            int[] ninl = { 2, 2 };
+            n = new NeuronMachine(2, 5, ninl);
+            Console.WriteLine();
+            
         }
 
         /// <summary>
@@ -79,23 +77,36 @@ namespace neuron
             {
                 Y = n.Work(X);
             }
-            textBox3.Text = Convert.ToString(Y[0]);
+            listBox1.DataSource=Y;
         }
 
         /// <summary>
         /// 3. Teach neuron machine
+        /// (Сделать нормальную форму для ввода данных для обучения,
+        /// на данный момент посылаю массив по умолчанию [1,0])
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
         private void button5_Click(object sender, EventArgs e)
         {
-            int jj = 0;
             if (n != null)
             {
-                List<double> t = new List<double>();
-                t.Add(Convert.ToDouble(textBox3.Text));
+                List<double> t = new List<double>
+                {
+                    Convert.ToDouble(textBox3.Text), Convert.ToDouble(textBox4.Text)
+                };
                 n.Teach(t);
             }
+        }
+
+        private void textBox3_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void textBox4_TextChanged(object sender, EventArgs e)
+        {
+
         }
     }
 }
